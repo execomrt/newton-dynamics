@@ -549,7 +549,7 @@ DG_INLINE dgInt32 dgInterlockedExchange(dgInt32* const ptr, dgInt32 value)
 		return _InterlockedExchange((long*)ptr, value);
 	#elif (defined (__MINGW32__) || defined (__MINGW64__))
 		return InterlockedExchange((long*) ptr, value);
-	#elif (defined (_POSIX_VER) || defined (_POSIX_VER_64) ||defined (_MACOSX_VER))
+	#elif (defined (_POSIX_VER) || defined (_POSIX_VER_64) ||defined (_MACOSX_VER)|| defined ANDROID)
 		return __sync_lock_test_and_set((int32_t*)ptr, value);
 	#else
 		#error "dgInterlockedExchange implementation required"
@@ -590,6 +590,7 @@ DG_INLINE dgInt32 dgInterlockedTest(dgInt32* const ptr, dgInt32 value)
 	#elif (defined (__MINGW32__) || defined (__MINGW64__))
 		return InterlockedCompareExchange((long*)ptr, value, value);
 	#elif (defined (_POSIX_VER) || defined (_POSIX_VER_64) ||defined (_MACOSX_VER))
+	#elif (defined (_POSIX_VER) || defined (_POSIX_VER_64) ||defined (_MACOSX_VER)|| defined ANDROID)
 		return __sync_lock_test_and_set((int32_t*)ptr, value);
 	#else
 		#error "dgInterlockedTest implementation required"

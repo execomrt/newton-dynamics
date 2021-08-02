@@ -29,9 +29,9 @@
 
 #define dgCheckVector(x) (dgCheckFloat(x[0]) && dgCheckFloat(x[1]) && dgCheckFloat(x[2]) && dgCheckFloat(x[3]))
 
-#ifdef DG_SCALAR_VECTOR_CLASS
+#if defined DG_SCALAR_VECTOR_CLASS
 	#include "dgVectorScalar.h"
-#elif defined(__ANDROID__) || defined (_ARM_VER) 
+#elif defined (__ARM_NEON__)	
 	#include "dgVectorArmNeon.h"
 #else
 	#include "dgVectorSimd.h"

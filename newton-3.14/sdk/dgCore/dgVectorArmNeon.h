@@ -1106,7 +1106,7 @@ public:
 #ifdef _NEWTON_USE_DOUBLE
 #define dgVector dgBigVector
 #else
-
+#include <arm_neon.h>
 class dgBigVector;
 DG_MSC_VECTOR_ALIGNMENT
 class dgVector
