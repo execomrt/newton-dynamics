@@ -153,7 +153,6 @@
 // define DG_USE_THREAD_EMULATION on the command line for 
 // platform that do not support hardware multi threading or 
 // if the and application want to control threading at the application level 
-//#define DG_USE_THREAD_EMULATION
 
 #if (defined (_WIN_32_VER) || defined (_WIN_64_VER))
 	#if _MSC_VER < 1700
@@ -589,7 +588,6 @@ DG_INLINE dgInt32 dgInterlockedTest(dgInt32* const ptr, dgInt32 value)
 		return _InterlockedCompareExchange((long*)ptr, value, value);
 	#elif (defined (__MINGW32__) || defined (__MINGW64__))
 		return InterlockedCompareExchange((long*)ptr, value, value);
-	#elif (defined (_POSIX_VER) || defined (_POSIX_VER_64) ||defined (_MACOSX_VER))
 	#elif (defined (_POSIX_VER) || defined (_POSIX_VER_64) ||defined (_MACOSX_VER)|| defined ANDROID)
 		return __sync_lock_test_and_set((int32_t*)ptr, value);
 	#else

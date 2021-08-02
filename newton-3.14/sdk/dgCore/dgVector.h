@@ -30,11 +30,13 @@
 #define dgCheckVector(x) (dgCheckFloat(x[0]) && dgCheckFloat(x[1]) && dgCheckFloat(x[2]) && dgCheckFloat(x[3]))
 
 #if defined DG_SCALAR_VECTOR_CLASS
-	#include "dgVectorScalar.h"
-#elif defined (__ARM_NEON__)	
-	#include "dgVectorArmNeon.h"
+#include "dgVectorScalar.h"
+#elif defined (__ARM_NEON__) || defined (_M_ARM64)
+#include "dgVectorArmNeon.h"
+#elif defined(__ia64__) || defined(__x86_64__)
+#include "dgVectorSimd.h"
 #else
-	#include "dgVectorSimd.h"
+#include "dgVectorScalar.h"
 #endif
 
 template<class T>
